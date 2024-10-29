@@ -259,9 +259,12 @@ public class Bridge {
         // Start the local web server
         JSInjector injector = getJSInjector();
         if (WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)) {
-            String allowedOrigin = Uri.parse(appUrl).buildUpon().path(null).fragment(null).clearQuery().build().toString();
+            // Linklings FIX
+            // String allowedOrigin = Uri.parse(appUrl).buildUpon().path(null).fragment(null).clearQuery().build().toString();
             try {
-                WebViewCompat.addDocumentStartJavaScript(webView, injector.getScriptString(), Collections.singleton(allowedOrigin));
+                // Linklings FIX
+                // WebViewCompat.addDocumentStartJavaScript(webView, injector.getScriptString(), Collections.singleton(allowedOrigin));
+                WebViewCompat.addDocumentStartJavaScript(webView, injector.getScriptString(), allowedOriginRules);
                 injector = null;
             } catch (IllegalArgumentException ex) {
                 Logger.warn("Invalid url, using fallback");
